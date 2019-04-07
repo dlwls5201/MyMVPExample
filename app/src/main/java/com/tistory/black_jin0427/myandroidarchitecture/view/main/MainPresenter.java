@@ -23,9 +23,8 @@ public class MainPresenter implements MainContract.Presenter {
 
     private CompositeDisposable disposable;
 
-    private RxEventBus rxEventBus;
+    private RxEventBus rxEventBus = RxEventBus.getInstance();
 
-    //TODO 의존성을 없애기 위해 생성자 생성시 외부에서 받아오는게 더 좋습니다.
     MainPresenter(MainContract.View view,
                   GithubApi api,
                   UserDao userDao,
@@ -34,8 +33,6 @@ public class MainPresenter implements MainContract.Presenter {
         this.api = api;
         this.userDao = userDao;
         this.disposable = disposable;
-
-        this.rxEventBus = RxEventBus.getInstance();
     }
 
     @Override
@@ -63,14 +60,12 @@ public class MainPresenter implements MainContract.Presenter {
     @Override
     public void addUser(User user) {
 
-        //TODO userDao 를 초기에 받아 처리할 수 있게 합니다.
         disposable.add(
                 Observable.just(user)
                         .subscribeOn(Schedulers.io())
                         .subscribe(
                                 item -> {
                                     userDao.add(item);
-                                    //TODO addUser 반환값에 맞게 처리합니다.
                                     view.goToDetailActivity(user);
                                 },
                                 error -> {
@@ -82,7 +77,6 @@ public class MainPresenter implements MainContract.Presenter {
 
     }
 
-    //TODO setRxEvent 보다는 init 이 더 명확하다
     @Override
     public void initRxEvent() {
 

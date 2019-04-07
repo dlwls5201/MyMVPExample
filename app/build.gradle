@@ -59,11 +59,6 @@ dependencies {
     // kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
 
-    // anko Commons
-    implementation "org.jetbrains.anko:anko-commons:$ankoVersion"
-    implementation "org.jetbrains.anko:anko-appcompat-v7-commons:$ankoVersion"
-    implementation "org.jetbrains.anko:anko-support-v4-commons:$ankoVersion"
-
     // room
     implementation "android.arch.persistence.room:runtime:$roomVersion"
     implementation "android.arch.persistence.room:rxjava2:$roomVersion"

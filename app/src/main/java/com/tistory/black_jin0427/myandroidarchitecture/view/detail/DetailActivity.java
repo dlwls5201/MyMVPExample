@@ -59,6 +59,9 @@ public class DetailActivity extends BaseActivity implements DetailContract.View 
         tvDetailLikeCnt.setText(text);
     }
 
+    /**
+     * ButterKnife ClickListener
+     */
     @OnClick(R.id.btn_detail_like)
     void onClick() {
 

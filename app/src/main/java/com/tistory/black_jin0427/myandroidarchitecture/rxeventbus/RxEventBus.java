@@ -3,7 +3,6 @@ package com.tistory.black_jin0427.myandroidarchitecture.rxeventbus;
 import io.reactivex.Observable;
 import io.reactivex.subjects.PublishSubject;
 
-//TODO 패키지명은 모두 소문자로 해줍니다.
 public class RxEventBus {
 
     private static RxEventBus instance;

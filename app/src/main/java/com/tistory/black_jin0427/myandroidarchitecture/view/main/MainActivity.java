@@ -77,7 +77,6 @@ public class MainActivity extends BaseActivity
 
     @Override
     public void goToDetailActivity(User user) {
-
         Intent intent = new Intent(this, DetailActivity.class);
         intent.putExtra(DetailActivity.KEY_USER, user);
         startActivity(intent);
@@ -85,7 +84,6 @@ public class MainActivity extends BaseActivity
 
     @Override
     public void goToRecentActivity() {
-
         Intent intent = new Intent(this, RecentActivity.class);
         startActivity(intent);
     }
@@ -110,8 +108,6 @@ public class MainActivity extends BaseActivity
      */
     @Override
     public void onItemClick(User user) {
-
-        //TODO model 을 만들어서 return 값에 따라 DetailActivity 이동 여부를 설정해주세요
         presenter.addUser(user);
     }
 

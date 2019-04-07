@@ -17,7 +17,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 
-    //TODO duration 을 추가하여 코드를 분리해 주자
     public void showToast(String message, int duration) {
         Toast.makeText(this, message, duration).show();
     }

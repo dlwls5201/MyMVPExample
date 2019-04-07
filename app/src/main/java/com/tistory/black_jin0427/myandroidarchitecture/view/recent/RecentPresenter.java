@@ -69,7 +69,6 @@ public class RecentPresenter implements RecentContract.Presenter {
                         .subscribeOn(Schedulers.io())
                         .subscribe(
                                 item -> {
-                                    Log.d("MyTag", item);
                                     userDao.clearAll();
                                 },
                                 error -> {
