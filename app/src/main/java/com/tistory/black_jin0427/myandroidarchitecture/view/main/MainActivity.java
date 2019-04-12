@@ -11,13 +11,15 @@ import android.widget.ProgressBar;
 import com.tistory.black_jin0427.myandroidarchitecture.BaseActivity;
 import com.tistory.black_jin0427.myandroidarchitecture.R;
 import com.tistory.black_jin0427.myandroidarchitecture.adapter.MainAdapter;
-import com.tistory.black_jin0427.myandroidarchitecture.api.GithubApiProvider;
+import com.tistory.black_jin0427.myandroidarchitecture.api.GithubApi;
 import com.tistory.black_jin0427.myandroidarchitecture.api.model.User;
-import com.tistory.black_jin0427.myandroidarchitecture.room.UserDatabaseProvider;
+import com.tistory.black_jin0427.myandroidarchitecture.room.UserDao;
 import com.tistory.black_jin0427.myandroidarchitecture.view.detail.DetailActivity;
 import com.tistory.black_jin0427.myandroidarchitecture.view.recent.RecentActivity;
 
 import java.util.ArrayList;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -26,11 +28,17 @@ import io.reactivex.disposables.CompositeDisposable;
 public class MainActivity extends BaseActivity
         implements MainContract.View, MainAdapter.OnItemClickListener {
 
-    private MainAdapter adapter = new MainAdapter();
+    @Inject
+    MainAdapter adapter;
 
-    private CompositeDisposable disposable = new CompositeDisposable();
+    @Inject
+    MainPresenter presenter;
 
-    private MainPresenter presenter;
+    @Inject
+    GithubApi api;
+
+    @Inject
+    UserDao userDao;
 
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
@@ -49,12 +57,6 @@ public class MainActivity extends BaseActivity
 
         adapter.setClickListener(this);
 
-        presenter = new MainPresenter(
-                this,
-                GithubApiProvider.provideGithubApi(),
-                UserDatabaseProvider.getInstance(this).getUserDao(),
-                disposable);
-
         presenter.loadData();
         presenter.initRxEvent();
     }
@@ -62,7 +64,7 @@ public class MainActivity extends BaseActivity
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        disposable.clear();
+        presenter.detach();
     }
 
     @Override

@@ -10,7 +10,10 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public final class GithubApiProvider {
+/**
+ *  Dagger 사용으로 GithubApiProvider 더 이상 필요 없습니다. 사용 -> ApiModule
+ */
+/*public final class GithubApiProvider {
 
     public static GithubApi provideGithubApi() {
         return new Retrofit.Builder()
@@ -33,4 +36,4 @@ public final class GithubApiProvider {
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         return interceptor;
     }
-}
+}*/

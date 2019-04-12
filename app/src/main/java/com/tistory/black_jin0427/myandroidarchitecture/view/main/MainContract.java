@@ -32,5 +32,7 @@ public interface MainContract {
         void initRxEvent();
 
         void addUser(User user);
+
+        void detach();
     }
 }

@@ -21,7 +21,7 @@ public class RecentPresenter implements RecentContract.Presenter {
 
     private CompositeDisposable disposable;
 
-    RecentPresenter(RecentContract.View view, UserDao userDao, CompositeDisposable disposable) {
+    public RecentPresenter(RecentContract.View view, UserDao userDao, CompositeDisposable disposable) {
         this.view = view;
         this.userDao = userDao;
         this.disposable = disposable;
@@ -76,5 +76,10 @@ public class RecentPresenter implements RecentContract.Presenter {
                                 }
                         )
         );
+    }
+
+    @Override
+    public void detach() {
+        disposable.clear();
     }
 }

@@ -12,9 +12,11 @@ import com.tistory.black_jin0427.myandroidarchitecture.BaseActivity;
 import com.tistory.black_jin0427.myandroidarchitecture.R;
 import com.tistory.black_jin0427.myandroidarchitecture.adapter.MainAdapter;
 import com.tistory.black_jin0427.myandroidarchitecture.api.model.User;
-import com.tistory.black_jin0427.myandroidarchitecture.room.UserDatabaseProvider;
+import com.tistory.black_jin0427.myandroidarchitecture.room.UserDao;
 
 import java.util.ArrayList;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -23,11 +25,14 @@ import io.reactivex.disposables.CompositeDisposable;
 public class RecentActivity extends BaseActivity
         implements RecentContract.View, MainAdapter.OnItemClickListener  {
 
-    private MainAdapter adapter = new MainAdapter();
+    @Inject
+    MainAdapter adapter;
 
-    private CompositeDisposable disposable = new CompositeDisposable();
+    @Inject
+    RecentPresenter presenter;
 
-    private RecentPresenter presenter;
+    @Inject
+    UserDao userDao;
 
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
@@ -45,17 +50,13 @@ public class RecentActivity extends BaseActivity
         recyclerView.setAdapter(adapter);
         adapter.setClickListener(this);
 
-        presenter = new RecentPresenter(
-                this,
-                UserDatabaseProvider.getInstance(this).getUserDao(),
-                disposable);
         presenter.loadData();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        disposable.clear();
+        presenter.detach();
     }
 
     @Override

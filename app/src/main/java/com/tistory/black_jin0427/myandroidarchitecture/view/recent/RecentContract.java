@@ -28,5 +28,8 @@ public interface RecentContract {
 
         // Room 데이터를 전부 삭제 합니다.
         void clearAll();
+
+        // 뷰와의 연결 해제
+        void detach();
     }
 }

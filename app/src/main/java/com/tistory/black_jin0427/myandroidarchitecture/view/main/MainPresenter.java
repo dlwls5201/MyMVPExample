@@ -25,10 +25,10 @@ public class MainPresenter implements MainContract.Presenter {
 
     private RxEventBus rxEventBus = RxEventBus.getInstance();
 
-    MainPresenter(MainContract.View view,
-                  GithubApi api,
-                  UserDao userDao,
-                  CompositeDisposable disposable) {
+    public MainPresenter(MainContract.View view,
+                         GithubApi api,
+                         UserDao userDao,
+                         CompositeDisposable disposable) {
         this.view = view;
         this.api = api;
         this.userDao = userDao;
@@ -107,5 +107,10 @@ public class MainPresenter implements MainContract.Presenter {
         disposable.addAll(
                 mainThreadBus, backThreadBus
         );
+    }
+
+    @Override
+    public void detach() {
+        disposable.clear();
     }
 }

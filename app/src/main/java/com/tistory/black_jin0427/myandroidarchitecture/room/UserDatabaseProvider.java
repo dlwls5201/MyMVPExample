@@ -3,8 +3,11 @@ package com.tistory.black_jin0427.myandroidarchitecture.room;
 import android.arch.persistence.room.Room;
 import android.content.Context;
 
+/**
+ *  Dagger 사용으로 UserDatabaseProvider 더 이상 필요 없습니다. -> RoomModule
+ */
 // 싱글톤 패턴을 사용하여 데이터베이스 객체를 제공합니다.
-public class UserDatabaseProvider {
+/*public class UserDatabaseProvider {
 
     private volatile static UserDatabase INSTANCE = null;
 
@@ -24,4 +27,4 @@ public class UserDatabaseProvider {
 
         return INSTANCE;
     }
-}
+}*/

@@ -1,11 +1,11 @@
 package com.tistory.black_jin0427.myandroidarchitecture;
 
-import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 import butterknife.ButterKnife;
+import dagger.android.support.DaggerAppCompatActivity;
 
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends DaggerAppCompatActivity {
 
     @Override
     public void setContentView(int layoutResID) {

@@ -7,7 +7,7 @@ public class DetailPresenter implements DetailContract.Presenter {
 
     private DetailContract.View view;
 
-    DetailPresenter(DetailContract.View view) {
+    public DetailPresenter(DetailContract.View view) {
         this.view = view;
     }
 
