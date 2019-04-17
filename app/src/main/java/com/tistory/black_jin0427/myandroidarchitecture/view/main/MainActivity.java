@@ -11,9 +11,7 @@ import android.widget.ProgressBar;
 import com.tistory.black_jin0427.myandroidarchitecture.BaseActivity;
 import com.tistory.black_jin0427.myandroidarchitecture.R;
 import com.tistory.black_jin0427.myandroidarchitecture.adapter.MainAdapter;
-import com.tistory.black_jin0427.myandroidarchitecture.api.GithubApi;
 import com.tistory.black_jin0427.myandroidarchitecture.api.model.User;
-import com.tistory.black_jin0427.myandroidarchitecture.room.UserDao;
 import com.tistory.black_jin0427.myandroidarchitecture.view.detail.DetailActivity;
 import com.tistory.black_jin0427.myandroidarchitecture.view.recent.RecentActivity;
 
@@ -23,7 +21,6 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import io.reactivex.disposables.CompositeDisposable;
 
 public class MainActivity extends BaseActivity
         implements MainContract.View, MainAdapter.OnItemClickListener {
@@ -33,12 +30,6 @@ public class MainActivity extends BaseActivity
 
     @Inject
     MainPresenter presenter;
-
-    @Inject
-    GithubApi api;
-
-    @Inject
-    UserDao userDao;
 
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;

@@ -15,7 +15,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module
-public class ApiModule {
+public final class ApiModule {
 
     @Provides
     @Singleton
@@ -43,7 +43,6 @@ public class ApiModule {
 
     @Provides
     @Singleton
-    //provideOkHttpClient 에 필요한 객체입니다.
     HttpLoggingInterceptor provideLoggingInterceptor() {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);

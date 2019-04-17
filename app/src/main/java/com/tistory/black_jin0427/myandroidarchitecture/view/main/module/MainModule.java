@@ -20,12 +20,11 @@ public class MainModule {
         return adapter;
     }
 
-
     @Provides
-    MainPresenter provideMainPresenter(MainActivity activity, GithubApi api, UserDao userDao, CompositeDisposable disposable) {
+    MainPresenter provideMainPresenter(MainActivity activity, GithubApi api,
+                                       UserDao userDao, CompositeDisposable disposable) {
         return new MainPresenter(activity, api, userDao, disposable);
     }
-
 
     @Provides
     CompositeDisposable provideMainDisposable() {
